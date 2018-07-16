@@ -1,0 +1,1 @@
+drug_name,num_prescriber,total_cost
