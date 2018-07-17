@@ -90,7 +90,7 @@ For example, run with sample itcont.txt please run the following command on comm
 Executing this approach on a single machine will take longer run time than then Dictionary approach. However it can be scale out to run on multiple nodes on a cluster-computing framework like PySpark on a distributed file system.
 
 
-![stack Overflow](http://lmsotfy.com/so.png)
+![Sample run time for both approaches on the 1.18GB datasets](/images/Demo_Runtime.png)
 
 
 # Instructions on running the program 
