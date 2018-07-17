@@ -64,6 +64,7 @@ These specific files that mentioned above are provided in the `insight_testsuite
 Inspired by the mentioned sample approach `pharmacy_counting.py` that generated the expected output file within a single python script with input and output files as arguments.
 
 Original suggested command to run pharmacy_counting.py:
+
  `python ./src/pharmacy_counting.py ./input/itcont.txt ./output/top_cost_drug.txt`
 
 
@@ -95,7 +96,7 @@ Image()
 
 # Instructions on running the program 
 
-This solution was implemented with Pyhton 3. And it only used the following Python standard libraries and functions: **`sys`** , **`csv`** , **`math`** , **`number`**, **`unittest`** and **`ArgumentParser`** from **`argparse`** 
+This solution was implemented with Pyhton 3. And it only used the following Python standard libraries and functions: **`sys`** , **`csv`** , **`math`** , **`number`**, **`unittest`** and **`ArgumentParser`** from **`argparse`** .
 
 The `run.sh` in top-most directory of my repo will compile and run the program to generated the expected file in `output/`.
 
