@@ -35,9 +35,8 @@ Each line of this file should contain these fields:
 * num_prescriber: the number of unique prescribers who prescribed the drug. For the purposes of this challenge, a prescriber is considered the same person if two lines share the same prescriber first and last names
 * total_cost: total cost of the drug across all prescribers
 
-For example
+For example, if the input data, **`itcont.txt`**, is
 
-If the input data, **`itcont.txt`**, is
 ```
 id,prescriber_last_name,prescriber_first_name,drug_name,drug_cost
 1000000001,Smith,James,AMBIEN,100
@@ -91,7 +90,7 @@ For example, run with sample itcont.txt please run the following command on comm
 Executing this approach on a single machine will take longer run time than then Dictionary approach. However it can be scale out to run on multiple nodes on a cluster-computing framework like PySpark on a distributed file system.
 
 
-Image()
+![stack Overflow](http://lmsotfy.com/so.png)
 
 
 # Instructions on running the program 
