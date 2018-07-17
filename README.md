@@ -92,6 +92,8 @@ Executing this approach on a single machine will take longer run time than then 
 
 ![Sample run time for both approaches on the 1.18GB datasets](/images/Demo_Runtime.png)
 
+** For both approaches, since there are decimal numbers in the cost, I round up the cost budget so it make logical and business sense and avoided under estimate the cost.
+
 
 # Instructions on running the program 
 
