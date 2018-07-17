@@ -23,7 +23,7 @@ The following are the input datasets I am using for this challenge:
 * **`itcont.txt`** : the original sample dataset came with the challenge in the `insight_testsuite/tests/test_1/input` folder 
 * **`itcont_sameCost.txt`** : a modified version of the original itcont.txt where AMBIEN costed the same as CHLORPROMAZINE in their first 2 prescriptions 
 * **`de_cc_data.txt`** : the 1.18GB dataset de_cc_data.txt. (*Due to the huge file size, I didn't include in this repo. You can download from <a href="https://drive.google.com/file/d/1fxtTLR_Z5fTO-Y91BnKOQd6J0VC9gPO3/view?usp=sharing">Here</a>. )
-* **`de_cc_data_head500.txt`** : the top 500 records from the 1.18GB dataset de_cc_data.txt. I wrote a function in the supporting script `dataset_tool.py` to extract and save this smaller sample dataset to `input/` for tests 
+* **`de_cc_data_head500.txt`** : the top 500 records from the 1.18GB dataset de_cc_data.txt. I wrote a function in the supporting script `dataset_tool.py` to extract and save this smaller sample dataset to `input/` for tests. 
 
 
 # Output 
@@ -71,7 +71,7 @@ Original suggested command to run pharmacy_counting.py:
 This is an initial approach (rapid prototyped) to solve the pharmacy counting problem. It is meant to test out the logics to solve this problem. Therefore, it is designed to run on a single machine due to it is using a dictionary to store the result. It is suppose to run faster on a single node with limited volume of data compared with the Mapreduce approach mentioned below.
 However, it's performance is having a positive correlation with the volume size of data. It will get slower as data size increased. And one more down side of this approach is the dictionary does consume memory and it can also cause memory issue if the dictionary size exceed the machine's memory capacity. 
 
-The major difference compaired to the mapreduce approch is. It used the data structure `set` to store the unique prescribers that prescribed for a particular drug. And then use the `len` of the set to sum up how many uniqued prescribers. And it used the Pyhton `sorted` function with lambda to sort the the values by drug_cost(index 2) in descending order first and then drug_name(index 0) in alphabetical order if there is a tie
+The major difference compaired to the mapreduce approch is. It used the data structure `set` to store the unique prescribers that prescribed for a particular drug. And then use the `len` of the set to sum up how many uniqued prescribers. And it used the Pyhton `sorted` function with lambda to sort the the values by drug_cost(index 2) in descending order first and then drug_name(index 0) in alphabetical order if there is a tie.
 
 
 ## 2. Python mapreduce approach for running on cluster-computing framework like PySpark
@@ -84,7 +84,7 @@ Beside the output file, input file, and sorting in between mapper, reducer and s
 
 For example, run with sample itcont.txt please run the following command on command line:
 
-      ` tail +2 ./input/itcont_sameCost.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 ./src/saveoutput.py -o ./output/top_cost_drug_sameCost_mapreduce.txt `
+      ` tail +2 ./input/itcont.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 ./src/saveOutput.py -o ./output/top_cost_drug.txt `
 
 - Skipped the header/first line of the file with the command `tail -n +2`
 
@@ -100,8 +100,14 @@ This solution was implemented with Pyhton 3. And it only used the following Pyth
 
 The `run.sh` in top-most directory of my repo will compile and run the program to generated the expected file in `output/`.
 
-It will run both the dictionary and mapredue approaches. And they both accept the file named `de_cc_data.txt` in the directory `input/` . 
-They run with the `time` command so the actual runtime will be printed.
+On the givien<a href="http://ec2-18-210-131-67.compute-1.amazonaws.com/test-my-repo-link">Insight testing enviorment</a>,
+it will run just the dictionary approaches. And they both accept the file named `itcont.txt` in the directory `input/` . 
+
+As a work around to also run the mapreduce process, on a bash command line, you can run the following command:
+      
+` tail +2 ./input/itcont.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 ./src/saveOutput.py -o ./output/top_cost_drug.txt `
+
+
 
 
 *** Due to I have 2 approaches, I designed the program to save the outputs from both approaches. And they are named different than the actual expecting output file name.*** 
@@ -115,27 +121,16 @@ They run with the `time` command so the actual runtime will be printed.
 
 For unit testing on the function for mapper and reducer, I wrote the script `unit_test_cases.py` with 3 test cases to test the functions with the module `unittest` .
 
-For running the shell script testings within `run_tests.sh` the `insight_testsuite` folder, I have modified the `output_files` variable in the function `run_all_tests` to make it as a list of testing output files. So instead of creating multiple test folders, we can loop to test all the input and output files at one time. It is testing the results from the mapreduce approach to see if it is matching with the given output file `top_cost_drug.txt` and the `op_cost_drug_head500.txt` that generated by the dictionary approach for cross checking.
+For running the shell script testings within `run_tests.sh` in the `insight_testsuite` folder, I have modified the `output_files` variable in the function `run_all_tests` to make it as a list of testing output files. So instead of creating multiple test folders, we can loop to test all the input and output files at one time. It is testing the results from the mapreduce approach to see if it is matching with the given output file `top_cost_drug.txt` and the `top_cost_drug_head500.txt` that generated by the dictionary approach for cross checking.
 
 Additionally, I modifed the `compare_outputs` function to have the `compare_final_outputs` to compare the large output files that generated by the both approaches with the 1.18GB `de_cc_data.txt` dataset .
 
 The test script called `run_tests.sh` in the `insight_testsuite` folder.
 
-The tests are stored simply as text files under the `insight_testsuite/tests` folder. Each test should have a separate folder with an `input` folder for `itcont.txt` and an `output` folder for `top_cost_drug.txt`.
-
 You can run the test with the following command from within the `insight_testsuite` folder:
 
     insight_testsuite~$ ./run_tests.sh 
 
-On a failed test, the output of `run_tests.sh` should look like:
-
-    [FAIL]: test_1
-    [Thu Mar 30 16:28:01 PDT 2017] 0 of 1 tests passed
-
-On success:
-
-    [PASS]: test_1
-    [Thu Mar 30 16:25:57 PDT 2017] 1 of 1 tests passed
 
 
 
