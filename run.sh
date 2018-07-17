@@ -30,24 +30,24 @@
 # echo "Done"
 
 # Run pharmacy_counting.py with the large dataset de_cc_data.txt
-echo "Running with pharmacy_counting.py on the large dataset de_cc_data.txt..."
-time python3 ./src/pharmacy_counting.py -i ./input/de_cc_data.txt -o ./output/top_cost_drug_large.txt
-echo "Done"
+# echo "Running with pharmacy_counting.py on the large dataset de_cc_data.txt..."
+# time python3 ./src/pharmacy_counting.py -i ./input/de_cc_data.txt -o ./output/top_cost_drug_large.txt
+# echo "Done"
 
-echo " "
+# echo " "
 
 # Run with mapper and reducer with the original sample dataset itcont.txt
-# echo "Running with mapper and reducer on itcont.txt..."
-# time tail +2 ./input/itcont.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 -i ./src/saveoutput.py  -o./output/top_cost_drug.txt
-# echo "Done"
+echo "Running with mapper and reducer on itcont.txt..."
+time tail +2 ./input/itcont.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 -i ./src/saveoutput.py  -o./output/top_cost_drug.txt
+echo "Done"
 
 # Run with mapper and reducer with first 500 lines of de_cc_data.txt
-# echo "Running with mapper and reducer on first 500 lines of de_cc_data.txt..."
-# time tail +2 ./input/de_cc_data_head500.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 -i ./src/saveoutput.py -o ./output/top_cost_drug_head500.txt
-# echo "Done"
+echo "Running with mapper and reducer on first 500 lines of de_cc_data.txt..."
+time tail +2 ./input/de_cc_data_head500.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 -i ./src/saveoutput.py -o ./output/top_cost_drug_head500.txt
+echo "Done"
 
 # Run with mapper and reducer with the large dataset de_cc_data.txt
-echo "Running with mapper and reducer on the large dataset de_cc_data.txt..."
-time tail +2 ./input/de_cc_data.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 ./src/saveoutput.py -o ./output/top_cost_drug_large_mapreduce.txt
-echo "Done"
+# echo "Running with mapper and reducer on the large dataset de_cc_data.txt..."
+# time tail +2 ./input/de_cc_data.txt | python3 ./src/mapper.py | sort | python3 ./src/reducer.py | sort -t $'\t' -k 3nr -k 1,1  | python3 ./src/saveoutput.py -o ./output/top_cost_drug_large_mapreduce.txt
+# echo "Done"
 
