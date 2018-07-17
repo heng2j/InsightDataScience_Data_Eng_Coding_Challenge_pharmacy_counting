@@ -101,7 +101,7 @@ This solution was implemented with Pyhton 3. And it only used the following Pyth
 
 The `run.sh` in top-most directory of my repo will compile and run the program to generated the expected file in `output/`.
 
-On the givien<a href="http://ec2-18-210-131-67.compute-1.amazonaws.com/test-my-repo-link">Insight testing enviorment</a>,
+On the givien <a href="http://ec2-18-210-131-67.compute-1.amazonaws.com/test-my-repo-link">Insight testing enviorment</a>,
 it will run just the dictionary approaches. And they both accept the file named `itcont.txt` in the directory `input/` . 
 
 As a work around to also run the mapreduce process, on a bash command line, you can run the following command:
