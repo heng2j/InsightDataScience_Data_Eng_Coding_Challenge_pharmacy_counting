@@ -2,7 +2,7 @@
 
 
 # Table of Contents
-1. [Problem](README.md#original-problem)
+1. [Original Problem](README.md#original-problem)
 2. [Input Dataset](README.md#input-dataset)
 3. [Output](README.md#output)
 4. [Approaches](README.md#approaches)
