@@ -2,12 +2,12 @@
 
 
 # Table of Contents
-1. [Problem](README.md#problem)
+1. [Problem](README.md#original-problem)
 2. [Input Dataset](README.md#input-dataset)
-3. [Instructions](README.md#instructions)
-4. [Output](README.md#output)
-5. [Tips on getting an interview](README.md#tips-on-getting-an-interview)
-6. [Instructions to submit your solution](README.md#instructions-to-submit-your-solution)
+3. [Output](README.md#output)
+4. [Approaches](README.md#approaches)
+5. [Instructions on running the program](README.md#instructions-on-running-the-program)
+6. [Testing](README.md#testing)
 7. [Questions?](README.md#questions?)
 
 # Original Problem:
