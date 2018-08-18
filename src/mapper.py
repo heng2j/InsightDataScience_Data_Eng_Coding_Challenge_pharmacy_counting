@@ -2,6 +2,7 @@
 # mapper.py
 # ---------------
 # Author: Zhongheng Li
+# Date: July 17th, 2018
 
 """
 mapper.py is mapping the streaming input data line by line as dictionary labeled type
